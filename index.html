@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ja" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MakiNest AI — 仕事を巻き取り、可能性を育てる AI の巣</title>
+  <meta name="description" content="散らばった情報や繰り返し作業を AI で整理し、人とチームがもっと創造的に働ける余白をつくります。中堅企業向け業務 RAG の専門スタジオ。">
+  <meta property="og:title" content="MakiNest AI — 仕事を巻き取り、可能性を育てる AI の巣">
+  <meta property="og:description" content="散らばった情報や繰り返し作業を AI で整理し、人とチームがもっと創造的に働ける余白をつくります。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://makinestai.github.io">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🪺%3C/text%3E%3C/svg%3E">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: { 950: '#08090d', 900: '#0c0d12', 800: '#15171f' },
+          },
+          fontFamily: {
+            sans: ['Inter', 'Noto Sans JP', 'sans-serif'],
+            mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+          },
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', 'Noto Sans JP', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    .font-mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+    .gradient-text {
+      background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f0abfc 100%);
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent; color: transparent;
+    }
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+    }
+    .card-hover { transition: transform .2s ease, border-color .2s ease, background-color .2s ease; }
+    .card-hover:hover { border-color: rgba(167, 139, 250, .4); background-color: rgba(255, 255, 255, .03); transform: translateY(-2px); }
+    .blob { position: absolute; border-radius: 50%; filter: blur(100px); pointer-events: none; }
+    .pulse-dot { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
+  </style>
+</head>
+<body class="bg-ink-950 text-slate-100 antialiased min-h-screen overflow-x-hidden">
+
+  <!-- Background gradient blobs -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+    <div class="blob bg-blue-600/30 w-[500px] h-[500px] -top-32 -left-32"></div>
+    <div class="blob bg-purple-600/30 w-[500px] h-[500px] top-1/4 -right-32"></div>
+    <div class="blob bg-fuchsia-600/20 w-[400px] h-[400px] bottom-0 left-1/3"></div>
+  </div>
+
+  <!-- Grid overlay -->
+  <div class="fixed inset-0 grid-bg pointer-events-none -z-10"></div>
+
+  <div class="relative max-w-5xl mx-auto px-6 py-8 md:py-12">
+
+    <!-- Nav -->
+    <nav class="flex items-center justify-between mb-24 md:mb-32">
+      <div class="flex items-center gap-2.5">
+        <span class="text-2xl">🪺</span>
+        <span class="font-mono font-bold tracking-tight">MakiNest AI</span>
+      </div>
+      <div class="flex items-center gap-6 text-sm text-slate-400">
+        <a href="https://github.com/makinestai" class="hover:text-white transition">GitHub</a>
+        <a href="https://zenn.dev/p/makinestai" class="hover:text-white transition">Zenn</a>
+        <a href="#contact" class="hover:text-white transition">Contact</a>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="text-center max-w-3xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur text-xs font-mono text-slate-300 mb-8">
+        <span class="size-1.5 rounded-full bg-emerald-400 pulse-dot"></span>
+        <span>中堅企業向け業務 RAG の専門スタジオ</span>
+      </div>
+
+      <h1 class="text-5xl md:text-7xl font-bold leading-[1.05] tracking-tight">
+        仕事を巻き取り、<br>
+        <span class="gradient-text">可能性を育てる AI の巣。</span>
+      </h1>
+
+      <p class="mt-8 text-lg md:text-xl text-slate-400 leading-relaxed max-w-2xl mx-auto">
+        散らばった情報や繰り返し作業を AI で整理し、<br class="hidden md:block">
+        人とチームがもっと創造的に働ける余白をつくります。
+      </p>
+
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
+        <a href="https://github.com/makinestai" class="group px-6 py-3 rounded-lg bg-white text-ink-950 font-semibold text-sm hover:bg-slate-200 transition inline-flex items-center gap-2">
+          GitHub を見る
+          <span class="group-hover:translate-x-0.5 transition">→</span>
+        </a>
+        <a href="https://zenn.dev/p/makinestai" class="px-6 py-3 rounded-lg border border-white/15 hover:border-white/40 hover:bg-white/5 font-semibold text-sm transition inline-flex items-center gap-2">
+          技術記事を読む
+        </a>
+      </div>
+    </header>
+
+    <!-- What we build -->
+    <section class="mt-32 md:mt-40">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <p class="text-xs font-mono tracking-[0.2em] text-blue-400 uppercase">What we build</p>
+        <h2 class="mt-3 text-3xl md:text-4xl font-bold tracking-tight">設計から運用まで、AI で。</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <article class="p-6 rounded-xl bg-white/[0.02] border border-white/10 card-hover">
+          <div class="flex items-start gap-4">
+            <div class="text-2xl shrink-0">🧩</div>
+            <div>
+              <h3 class="font-bold text-base">業務特化 RAG・AI エージェント</h3>
+              <p class="mt-2 text-sm text-slate-400 leading-relaxed">情シス・人事・経費・カスタマーサポートの「同じ質問を毎日繰り返す」を AI で巻き取る。</p>
+            </div>
+          </div>
+        </article>
+        <article class="p-6 rounded-xl bg-white/[0.02] border border-white/10 card-hover">
+          <div class="flex items-start gap-4">
+            <div class="text-2xl shrink-0">👁️</div>
+            <div>
+              <h3 class="font-bold text-base">マルチモーダル AI</h3>
+              <p class="mt-2 text-sm text-slate-400 leading-relaxed">コンピュータビジョン × 大規模言語モデルで、PDF の図表まで検索可能に。</p>
+            </div>
+          </div>
+        </article>
+        <article class="p-6 rounded-xl bg-white/[0.02] border border-white/10 card-hover">
+          <div class="flex items-start gap-4">
+            <div class="text-2xl shrink-0">🛡️</div>
+            <div>
+              <h3 class="font-bold text-base">Dify セルフホスト導入支援</h3>
+              <p class="mt-2 text-sm text-slate-400 leading-relaxed">機密データを社外に出さない構成。Zero Retention 設計でセキュリティ要件をクリア。</p>
+            </div>
+          </div>
+        </article>
+        <article class="p-6 rounded-xl bg-white/[0.02] border border-white/10 card-hover">
+          <div class="flex items-start gap-4">
+            <div class="text-2xl shrink-0">📊</div>
+            <div>
+              <h3 class="font-bold text-base">評価ハーネスで品質を数値化</h3>
+              <p class="mt-2 text-sm text-slate-400 leading-relaxed">5 軸ルーブリック + LLM-as-judge + Prompt Caching。「精度 80 点」を数字で証明。</p>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <p class="mt-10 text-center text-sm text-slate-500 leading-relaxed max-w-2xl mx-auto">
+        設計だけで終わらせず、現場で実際に回る業務エージェントを実装し、<br class="hidden md:block">
+        お客様の担当者が自走できる状態まで引き渡すことを大切にしています。
+      </p>
+    </section>
+
+    <!-- OSS Projects -->
+    <section class="mt-32 md:mt-40">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <p class="text-xs font-mono tracking-[0.2em] text-blue-400 uppercase">Open Source</p>
+        <h2 class="mt-3 text-3xl md:text-4xl font-bold tracking-tight">使えるテンプレを、公開する。</h2>
+      </div>
+
+      <div class="space-y-4">
+        <a href="https://github.com/makinestai/cs-rag-template" class="block">
+          <article class="p-6 rounded-xl bg-white/[0.02] border border-white/10 card-hover">
+            <div class="flex items-start justify-between gap-4">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-3 mb-3 flex-wrap">
+                  <h3 class="text-lg font-bold font-mono">cs-rag-template</h3>
+                  <span class="text-xs px-2 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-300">化粧品 EC / 美容医療</span>
+                </div>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                  業務特化マルチモーダル CS RAG。Claude API + Dify + LangChain + 自前評価ハーネス。Fork して 1 時間で動作する完全テンプレ。
+                </p>
+                <div class="mt-3 flex items-center gap-2 text-xs font-mono text-slate-500 flex-wrap">
+                  <span>Anthropic Claude</span><span class="opacity-50">·</span><span>Dify</span><span class="opacity-50">·</span><span>LangChain</span><span class="opacity-50">·</span><span>Prompt Caching</span>
+                </div>
+              </div>
+              <span class="text-slate-500 text-sm font-mono shrink-0 mt-1">→</span>
+            </div>
+          </article>
+        </a>
+        <a href="https://github.com/makinestai/ops-rag-template" class="block">
+          <article class="p-6 rounded-xl bg-white/[0.02] border border-white/10 card-hover">
+            <div class="flex items-start justify-between gap-4">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-3 mb-3 flex-wrap">
+                  <h3 class="text-lg font-bold font-mono">ops-rag-template</h3>
+                  <span class="text-xs px-2 py-0.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300">情シス / 人事 / 経費</span>
+                </div>
+                <p class="text-sm text-slate-400 leading-relaxed">
+                  中堅企業の社内問い合わせ自動化テンプレ。Claude vision で PDF 図表検索。4 知識ベース + 評価ハーネス流用。
+                </p>
+                <div class="mt-3 flex items-center gap-2 text-xs font-mono text-slate-500 flex-wrap">
+                  <span>Claude vision</span><span class="opacity-50">·</span><span>PDF RAG</span><span class="opacity-50">·</span><span>Multimodal</span>
+                </div>
+              </div>
+              <span class="text-slate-500 text-sm font-mono shrink-0 mt-1">→</span>
+            </div>
+          </article>
+        </a>
+      </div>
+    </section>
+
+    <!-- Articles CTA -->
+    <section class="mt-32 md:mt-40">
+      <div class="p-8 md:p-10 rounded-2xl bg-gradient-to-br from-blue-600/10 via-purple-600/10 to-fuchsia-600/10 border border-white/10 relative overflow-hidden">
+        <div class="absolute -top-20 -right-20 w-64 h-64 bg-purple-500/20 rounded-full blur-3xl"></div>
+        <div class="relative">
+          <p class="text-xs font-mono tracking-[0.2em] text-blue-300 uppercase mb-3">Tech Articles</p>
+          <h2 class="text-2xl md:text-3xl font-bold tracking-tight">
+            実装ノートを Zenn で公開しています。
+          </h2>
+          <p class="mt-4 text-slate-300 leading-relaxed max-w-xl">
+            マルチモーダル AI、業務 RAG、評価ハーネス、Prompt Caching、Claude Code——<br class="hidden md:block">
+            実装の試行錯誤を、コードと数字つきで。
+          </p>
+          <a href="https://zenn.dev/p/makinestai" class="group mt-6 inline-flex items-center gap-2 text-blue-300 hover:text-blue-200 font-semibold transition">
+            Zenn publication: makinestai
+            <span class="group-hover:translate-x-0.5 transition">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="mt-32 md:mt-40">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <p class="text-xs font-mono tracking-[0.2em] text-blue-400 uppercase">About</p>
+        <h2 class="mt-3 text-3xl md:text-4xl font-bold tracking-tight">代表について</h2>
+      </div>
+
+      <div class="max-w-2xl mx-auto p-6 md:p-8 rounded-xl bg-white/[0.02] border border-white/10">
+        <p class="text-sm md:text-base text-slate-300 leading-relaxed">
+          AI / コンピュータビジョンエンジニア。査読付き国際会議 <strong class="text-white">CVPR Workshop 2025</strong>（Computer Vision and Pattern Recognition、画像認識・AI 分野で世界最大級の査読付き国際学会）にて論文発表。
+        </p>
+        <p class="mt-4 text-sm md:text-base text-slate-400 leading-relaxed">
+          製造業現場 3 年 → 大学（コンピュータビジョン・機械学習専攻）→ 企業の研究開発職のハイブリッド経歴。
+        </p>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="mt-32 md:mt-40">
+      <div class="text-center max-w-2xl mx-auto">
+        <p class="text-xs font-mono tracking-[0.2em] text-blue-400 uppercase mb-3">Contact</p>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight">お問い合わせ</h2>
+        <p class="mt-4 text-slate-400 leading-relaxed">
+          業務委託・準委任ベースのご相談を受け付けています。<br>
+          中堅企業の業務オペレーション AI 化、Dify セルフホスト導入支援、マルチモーダル RAG の設計と実装。
+        </p>
+        <a href="mailto:makinest.ai@gmail.com" class="mt-8 inline-flex items-center gap-3 px-5 py-3 rounded-lg bg-white/5 border border-white/10 hover:border-white/30 hover:bg-white/10 font-mono text-sm transition">
+          <span class="text-slate-500">📧</span>
+          <span class="text-slate-300">makinest.ai@gmail.com</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="mt-32 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-3 text-sm text-slate-500">
+      <p>© 2026 MakiNest AI</p>
+      <p class="font-mono text-xs">
+        <a href="https://github.com/makinestai" class="hover:text-slate-300 transition">GitHub</a>
+        <span class="mx-2 opacity-50">·</span>
+        <a href="https://zenn.dev/p/makinestai" class="hover:text-slate-300 transition">Zenn</a>
+      </p>
+    </footer>
+
+  </div>
+
+</body>
+</html>
